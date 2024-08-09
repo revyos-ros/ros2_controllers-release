@@ -1,3 +1,4 @@
+release_repo_url: git@github.com:revyos-ros/ros2_controllers-release.git
 tracks:
   dashing:
     actions:
