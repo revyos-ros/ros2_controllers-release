@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 3.16)
 project(tricycle_controller LANGUAGES CXX)
 
 if(CMAKE_CXX_COMPILER_ID MATCHES "(GNU|Clang)")
-  add_compile_options(-Wall -Wextra -Wpedantic)
+  add_compile_options(-Wall -Wextra -Wpedantic -Wconversion)
 endif()
 
 set(THIS_PACKAGE_INCLUDE_DEPENDS
@@ -75,6 +75,12 @@ if(BUILD_TESTING)
   ament_target_dependencies(test_load_tricycle_controller
     controller_manager
     ros2_control_test_assets
+  )
+
+  ament_add_gmock(test_traction_limiter
+    test/test_traction_limiter.cpp)
+  target_link_libraries(test_traction_limiter
+    tricycle_controller
   )
 endif()
 
