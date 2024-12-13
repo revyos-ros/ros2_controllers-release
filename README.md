@@ -1,3 +1,51 @@
+## ros2_controllers (humble) - 2.39.0-1
+
+The packages in the `ros2_controllers` repository were released into the `humble` distro by running `/home/z572/gits/revyos-ros/venv2/bin/bloom-release -r humble ros2_controllers --override-release-repository-push-url git@github.com:revyos-ros/ros2_controllers-release.git` on `Fri, 13 Dec 2024 10:47:32 -0000`
+
+These packages were released:
+- `ackermann_steering_controller`
+- `admittance_controller`
+- `bicycle_steering_controller`
+- `diff_drive_controller`
+- `effort_controllers`
+- `force_torque_sensor_broadcaster`
+- `forward_command_controller`
+- `gripper_controllers`
+- `imu_sensor_broadcaster`
+- `joint_state_broadcaster`
+- `joint_trajectory_controller`
+- `pid_controller`
+- `pose_broadcaster`
+- `position_controllers`
+- `range_sensor_broadcaster`
+- `ros2_controllers`
+- `ros2_controllers_test_nodes`
+- `rqt_joint_trajectory_controller`
+- `steering_controllers_library`
+- `tricycle_controller`
+- `tricycle_steering_controller`
+- `velocity_controllers`
+
+These packages were explicitly ignored:
+- `gpio_controllers`
+
+Version of package(s) in repository `ros2_controllers`:
+
+- upstream repository: https://github.com/ros-controls/ros2_controllers.git
+- release repository: https://github.com/revyos-ros/ros2_controllers-release.git
+- rosdistro version: `2.39.0-1`
+- old version: `2.37.3-1`
+- new version: `2.39.0-1`
+
+Versions of tools used:
+
+- bloom version: `0.12.0`
+- catkin_pkg version: `1.0.0`
+- rosdep version: `0.22.2`
+- rosdistro version: `0.9.0`
+- vcstools version: `0.1.42`
+
+
 ## ros2_controllers (jazzy) - 4.15.0-1
 
 The packages in the `ros2_controllers` repository were released into the `jazzy` distro by running `/home/z572/gits/revyos-ros/venv2/bin/bloom-release -r jazzy ros2_controllers --override-release-repository-push-url git@github.com:revyos-ros/ros2_controllers-release.git` on `Tue, 08 Oct 2024 06:46:08 -0000`
