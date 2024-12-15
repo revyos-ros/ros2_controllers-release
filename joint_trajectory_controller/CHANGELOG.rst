@@ -2,6 +2,23 @@
 Changelog for package joint_trajectory_controller
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+4.17.0 (2024-12-07)
+-------------------
+* Use the .hpp headers from `realtime_tools` package (`#1406 <https://github.com/ros-controls/ros2_controllers/issues/1406>`_)
+* JTC: sum periods (`#1395 <https://github.com/ros-controls/ros2_controllers/issues/1395>`_)
+* [JTC] Sample at t + dT instead of the beginning of the control cycle (`#1306 <https://github.com/ros-controls/ros2_controllers/issues/1306>`_)
+* Add few warning flags to error in all ros2_controllers packages and fix tests (`#1370 <https://github.com/ros-controls/ros2_controllers/issues/1370>`_)
+* Update maintainers and add url tags (`#1363 <https://github.com/ros-controls/ros2_controllers/issues/1363>`_)
+* Contributors: Christoph Fröhlich, Felix Exner (fexner), Sai Kishor Kothakota
+
+4.16.0 (2024-11-08)
+-------------------
+* [JTC] Fix the JTC length_error exceptions in the tests (`#1360 <https://github.com/ros-controls/ros2_controllers/issues/1360>`_)
+* [jtc] Improve trajectory sampling efficiency (`#1297 <https://github.com/ros-controls/ros2_controllers/issues/1297>`_)
+* fixes for windows compilation (`#1330 <https://github.com/ros-controls/ros2_controllers/issues/1330>`_)
+* [JTC] Add Parameter to Toggle State Setting on Activation (`#1231 <https://github.com/ros-controls/ros2_controllers/issues/1231>`_)
+* Contributors: Gilmar Correia, Kenta Kato, RobertWilbrandt, Sai Kishor Kothakota
+
 4.15.0 (2024-10-07)
 -------------------
 
