@@ -38,6 +38,9 @@
 #include "control_msgs/action/follow_joint_trajectory.hpp"
 #include "joint_trajectory_controller_parameters.hpp"
 
+#include "rclcpp/node.hpp"
+#include "rclcpp/time.hpp"
+
 namespace joint_trajectory_controller
 {
 /**
@@ -199,7 +202,7 @@ SegmentTolerances get_segment_tolerances(
           .c_str());
       return default_tolerances;
     }
-    auto i = std::distance(joints.cbegin(), it);
+    auto i = static_cast<size_t>(std::distance(joints.cbegin(), it));
     std::string interface = "";
     try
     {
@@ -246,7 +249,7 @@ SegmentTolerances get_segment_tolerances(
           .c_str());
       return default_tolerances;
     }
-    auto i = std::distance(joints.cbegin(), it);
+    auto i = static_cast<size_t>(std::distance(joints.cbegin(), it));
     std::string interface = "";
     try
     {
@@ -313,7 +316,7 @@ inline bool check_state_tolerance_per_joint(
   if (show_errors)
   {
     const auto logger = rclcpp::get_logger("tolerances");
-    RCLCPP_ERROR(logger, "State tolerances failed for joint %lu:", joint_idx);
+    RCLCPP_ERROR(logger, "State tolerances failed for joint %d:", joint_idx);
 
     if (state_tolerance.position > 0.0 && abs(error_position) > state_tolerance.position)
     {

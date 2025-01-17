@@ -9,11 +9,14 @@ on:
       - '**.rst'
       - '**.md'
       - '**.yaml'
-      - '.github/workflows/rolling-check-docs.yml'
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
 
 jobs:
   check-docs:
     name: Check Docs
-    uses: ros-controls/control.ros.org/.github/workflows/reusable-sphinx-check-single-version.yml@rolling
+    uses: ros-controls/control.ros.org/.github/workflows/reusable-sphinx-check-single-version.yml@master
     with:
       ROS2_CONTROLLERS_PR: ${{ github.ref }}

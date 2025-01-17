@@ -23,13 +23,7 @@
 #include <vector>
 
 #include <rclcpp/time.hpp>
-
-// \note The versions conditioning is added here to support the source-compatibility with Humble
-#if RCPPUTILS_VERSION_MAJOR >= 2 && RCPPUTILS_VERSION_MINOR >= 6
-#include "rcpputils/rolling_mean_accumulator.hpp"
-#else
 #include "rcppmath/rolling_mean_accumulator.hpp"
-#endif
 
 namespace steering_odometry
 {
@@ -192,10 +186,13 @@ public:
    * \param v_bx     Desired linear velocity of the robot in x_b-axis direction
    * \param omega_bz Desired angular velocity of the robot around x_z-axis
    * \param open_loop If false, the IK will be calculated using measured steering angle
+   * \param reduce_wheel_speed_until_steering_reached Reduce wheel speed until the steering angle
+   * has been reached
    * \return Tuple of velocity commands and steering commands
    */
   std::tuple<std::vector<double>, std::vector<double>> get_commands(
-    const double v_bx, const double omega_bz, const bool open_loop = true);
+    const double v_bx, const double omega_bz, const bool open_loop = true,
+    const bool reduce_wheel_speed_until_steering_reached = false);
 
   /**
    *  \brief Reset poses, heading, and accumulators
@@ -249,13 +246,6 @@ private:
    */
   void reset_accumulators();
 
-// \note The versions conditioning is added here to support the source-compatibility with Humble
-#if RCPPUTILS_VERSION_MAJOR >= 2 && RCPPUTILS_VERSION_MINOR >= 6
-  using RollingMeanAccumulator = rcpputils::RollingMeanAccumulator<double>;
-#else
-  using RollingMeanAccumulator = rcppmath::RollingMeanAccumulator<double>;
-#endif
-
   /// Current timestamp:
   rclcpp::Time timestamp_;
 
@@ -283,8 +273,8 @@ private:
   double traction_left_wheel_old_pos_;
   /// Rolling mean accumulators for the linear and angular velocities:
   size_t velocity_rolling_window_size_;
-  RollingMeanAccumulator linear_acc_;
-  RollingMeanAccumulator angular_acc_;
+  rcppmath::RollingMeanAccumulator<double> linear_acc_;
+  rcppmath::RollingMeanAccumulator<double> angular_acc_;
 };
 }  // namespace steering_odometry
 

@@ -14,6 +14,7 @@
 
 #include <gmock/gmock.h>
 
+#include <array>
 #include <memory>
 #include <string>
 #include <thread>
@@ -25,8 +26,7 @@
 #include "hardware_interface/loaned_state_interface.hpp"
 #include "hardware_interface/types/hardware_interface_type_values.hpp"
 #include "lifecycle_msgs/msg/state.hpp"
-#include "rclcpp/executor.hpp"
-#include "rclcpp/executors.hpp"
+#include "rclcpp/rclcpp.hpp"
 
 using CallbackReturn = controller_interface::CallbackReturn;
 using hardware_interface::HW_IF_POSITION;
@@ -49,8 +49,7 @@ public:
   std::shared_ptr<geometry_msgs::msg::TwistStamped> getLastReceivedTwist()
   {
     std::shared_ptr<geometry_msgs::msg::TwistStamped> ret;
-    received_velocity_msg_ptr_.get(
-      [&ret](const std::shared_ptr<geometry_msgs::msg::TwistStamped> & msg) { ret = msg; });
+    received_velocity_msg_ptr_.get(ret);
     return ret;
   }
 
@@ -188,7 +187,7 @@ protected:
     parameter_overrides.insert(parameter_overrides.end(), parameters.begin(), parameters.end());
     node_options.parameter_overrides(parameter_overrides);
 
-    return controller_->init(controller_name, urdf_, 0, ns, node_options);
+    return controller_->init(controller_name, ns, node_options);
   }
 
   const std::string controller_name = "test_diff_drive_controller";
@@ -212,14 +211,11 @@ protected:
 
   rclcpp::Node::SharedPtr pub_node;
   rclcpp::Publisher<geometry_msgs::msg::TwistStamped>::SharedPtr velocity_publisher;
-
-  const std::string urdf_ = "";
 };
 
 TEST_F(TestDiffDriveController, init_fails_without_parameters)
 {
-  const auto ret =
-    controller_->init(controller_name, urdf_, 0, "", controller_->define_custom_node_options());
+  const auto ret = controller_->init(controller_name);
   ASSERT_EQ(ret, controller_interface::return_type::ERROR);
 }
 
@@ -392,7 +388,6 @@ TEST_F(TestDiffDriveController, configure_succeeds_tf_test_prefix_true_set_names
 TEST_F(TestDiffDriveController, configure_succeeds_tf_blank_prefix_true_set_namespace)
 {
   std::string test_namespace = "/test_namespace";
-
   std::string odom_id = "odom";
   std::string base_link_id = "base_link";
   std::string frame_prefix = "";
@@ -412,10 +407,11 @@ TEST_F(TestDiffDriveController, configure_succeeds_tf_blank_prefix_true_set_name
   auto odometry_message = controller_->get_rt_odom_publisher()->msg_;
   std::string test_odom_frame_id = odometry_message.header.frame_id;
   std::string test_base_frame_id = odometry_message.child_frame_id;
+  std::string ns_prefix = test_namespace.erase(0, 1) + "/";
   /* tf_frame_prefix_enable is true but frame_prefix is blank so namespace should be appended to the
    * frame id's */
-  ASSERT_EQ(test_odom_frame_id, test_namespace + "/" + odom_id);
-  ASSERT_EQ(test_base_frame_id, test_namespace + "/" + base_link_id);
+  ASSERT_EQ(test_odom_frame_id, ns_prefix + odom_id);
+  ASSERT_EQ(test_base_frame_id, ns_prefix + base_link_id);
 }
 
 TEST_F(TestDiffDriveController, activate_fails_without_resources_assigned)

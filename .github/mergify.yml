@@ -1,18 +1,9 @@
 pull_request_rules:
-  - name: Backport to humble at reviewers discretion
-    conditions:
-      - base=master
-      - "label=backport-humble"
-    actions:
-      backport:
-        branches:
-          - humble
 
   - name: Ask to resolve conflict
     conditions:
       - conflict
-      - author!=mergify[bot]
-      - author!=dependabot[bot]
+      - author!=mergify
     actions:
         comment:
           message: This pull request is in conflict. Could you fix it @{{author}}?
@@ -23,7 +14,7 @@ pull_request_rules:
       - author=mergify[bot]
     actions:
         comment:
-          message: This pull request is in conflict. Could you fix it @bmagyar @destogl @christophfroehlich?
+          message: This pull request is in conflict. Could you fix it @bmagyar @destogl @christophfroehlich @saikishor?
 
   - name: development targets master branch
     conditions:
@@ -31,6 +22,7 @@ pull_request_rules:
       - author!=bmagyar
       - author!=destogl
       - author!=christophfroehlich
+      - author!=saikishor
       - author!=mergify[bot]
       - author!=dependabot[bot]
     actions:
