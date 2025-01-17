@@ -37,9 +37,8 @@
 #include "odometry.hpp"
 #include "rclcpp/rclcpp.hpp"
 #include "rclcpp_lifecycle/state.hpp"
-#include "realtime_tools/realtime_box.h"
-#include "realtime_tools/realtime_buffer.h"
-#include "realtime_tools/realtime_publisher.h"
+#include "realtime_tools/realtime_box.hpp"
+#include "realtime_tools/realtime_publisher.hpp"
 #include "tf2_msgs/msg/tf_message.hpp"
 
 #include "diff_drive_controller_parameters.hpp"
@@ -85,10 +84,6 @@ public:
 
   DIFF_DRIVE_CONTROLLER_PUBLIC
   controller_interface::CallbackReturn on_error(
-    const rclcpp_lifecycle::State & previous_state) override;
-
-  DIFF_DRIVE_CONTROLLER_PUBLIC
-  controller_interface::CallbackReturn on_shutdown(
     const rclcpp_lifecycle::State & previous_state) override;
 
 protected:
