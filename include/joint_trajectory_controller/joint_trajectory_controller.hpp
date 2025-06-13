@@ -15,6 +15,7 @@
 #ifndef JOINT_TRAJECTORY_CONTROLLER__JOINT_TRAJECTORY_CONTROLLER_HPP_
 #define JOINT_TRAJECTORY_CONTROLLER__JOINT_TRAJECTORY_CONTROLLER_HPP_
 
+#include <atomic>
 #include <functional>  // for std::reference_wrapper
 #include <memory>
 #include <string>
@@ -100,6 +101,8 @@ protected:
 
   // Degrees of freedom
   size_t dof_;
+  size_t num_cmd_joints_;
+  std::vector<size_t> map_cmd_to_joints_;
 
   // Storing command joint names for interfaces
   std::vector<std::string> command_joint_names_;
@@ -150,7 +153,7 @@ protected:
   // Timeout to consider commands old
   double cmd_timeout_;
   // True if holding position or repeating last trajectory point in case of success
-  realtime_tools::RealtimeBuffer<bool> rt_is_holding_;
+  std::atomic<bool> rt_is_holding_;
   // TODO(karsten1987): eventually activate and deactivate subscriber directly when its supported
   bool subscriber_is_active_ = false;
   rclcpp::Subscription<trajectory_msgs::msg::JointTrajectory>::SharedPtr joint_command_subscriber_ =
@@ -177,7 +180,7 @@ protected:
 
   rclcpp_action::Server<FollowJTrajAction>::SharedPtr action_server_;
   RealtimeGoalHandleBuffer rt_active_goal_;  ///< Currently active action goal, if any.
-  realtime_tools::RealtimeBuffer<bool> rt_has_pending_goal_;  ///< Is there a pending action goal?
+  std::atomic<bool> rt_has_pending_goal_;    ///< Is there a pending action goal?
   rclcpp::TimerBase::SharedPtr goal_handle_timer_;
   rclcpp::Duration action_monitor_period_ = rclcpp::Duration(50ms);
 
@@ -267,9 +270,9 @@ private:
 
   void init_hold_position_msg();
   void resize_joint_trajectory_point(
-    trajectory_msgs::msg::JointTrajectoryPoint & point, size_t size);
+    trajectory_msgs::msg::JointTrajectoryPoint & point, size_t size, double value = 0.0);
   void resize_joint_trajectory_point_command(
-    trajectory_msgs::msg::JointTrajectoryPoint & point, size_t size);
+    trajectory_msgs::msg::JointTrajectoryPoint & point, size_t size, double value = 0.0);
 
   /**
    * @brief Assigns the values from a trajectory point interface to a joint interface.
@@ -283,9 +286,9 @@ private:
   void assign_interface_from_point(
     const T & joint_interface, const std::vector<double> & trajectory_point_interface)
   {
-    for (size_t index = 0; index < dof_; ++index)
+    for (size_t index = 0; index < num_cmd_joints_; ++index)
     {
-      joint_interface[index].get().set_value(trajectory_point_interface[index]);
+      joint_interface[index].get().set_value(trajectory_point_interface[map_cmd_to_joints_[index]]);
     }
   }
 };
