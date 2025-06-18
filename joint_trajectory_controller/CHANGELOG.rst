@@ -2,25 +2,15 @@
 Changelog for package joint_trajectory_controller
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-5.1.0 (2025-06-11)
-------------------
-* [JTC] [Doc] Update PID documentation for effort related command interface support (`#1748 <https://github.com/ros-controls/ros2_controllers/issues/1748>`_)
-* JTC: Use std::atomic<bool> (`#1720 <https://github.com/ros-controls/ros2_controllers/issues/1720>`_)
-* Reset both sec and nanosec in time_from_start (`#1709 <https://github.com/ros-controls/ros2_controllers/issues/1709>`_)
-* Contributors: Arnav Kapoor, Christoph Fröhlich, Julia Jia
+4.26.0 (2025-06-06)
+-------------------
+* JTC: Use std::atomic<bool> (backport `#1720 <https://github.com/ros-controls/ros2_controllers/issues/1720>`_) (`#1723 <https://github.com/ros-controls/ros2_controllers/issues/1723>`_)
+* Reset both sec and nanosec in time_from_start (backport `#1709 <https://github.com/ros-controls/ros2_controllers/issues/1709>`_) (`#1711 <https://github.com/ros-controls/ros2_controllers/issues/1711>`_)
+* Use target_link_libraries instead of ament_target_dependencies (backport `#1697 <https://github.com/ros-controls/ros2_controllers/issues/1697>`_) (`#1699 <https://github.com/ros-controls/ros2_controllers/issues/1699>`_)
+* Contributors: mergify[bot]
 
-5.0.2 (2025-05-26)
-------------------
-
-5.0.1 (2025-05-24)
-------------------
-* Use target_link_libraries instead of ament_target_dependencies (`#1697 <https://github.com/ros-controls/ros2_controllers/issues/1697>`_)
-* Contributors: Sai Kishor Kothakota
-
-5.0.0 (2025-05-17)
-------------------
-* [JTC] Remove deprecated open_loop_control code (`#1598 <https://github.com/ros-controls/ros2_controllers/issues/1598>`_)
-* Contributors: Thies Oelerich
+4.25.0 (2025-05-17)
+-------------------
 
 4.24.0 (2025-04-27)
 -------------------
