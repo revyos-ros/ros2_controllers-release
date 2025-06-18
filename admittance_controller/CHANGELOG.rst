@@ -2,6 +2,27 @@
 Changelog for package admittance_controller
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+4.26.0 (2025-06-06)
+-------------------
+* Use target_link_libraries instead of ament_target_dependencies (backport `#1697 <https://github.com/ros-controls/ros2_controllers/issues/1697>`_) (`#1699 <https://github.com/ros-controls/ros2_controllers/issues/1699>`_)
+* Contributors: mergify[bot]
+
+4.25.0 (2025-05-17)
+-------------------
+
+4.24.0 (2025-04-27)
+-------------------
+
+4.23.0 (2025-04-10)
+-------------------
+* Bump version of pre-commit hooks (`#1618 <https://github.com/ros-controls/ros2_controllers/issues/1618>`_)
+* Use global cmake macros and fix gcc-10 build (`#1527 <https://github.com/ros-controls/ros2_controllers/issues/1527>`_)
+* Replace RCLCPP\_*_STREAM macros with RCLCPP\_* (`#1600 <https://github.com/ros-controls/ros2_controllers/issues/1600>`_)
+* Contributors: Christoph Fröhlich, Vedant Randive, github-actions[bot]
+
+4.22.0 (2025-03-17)
+-------------------
+
 4.21.0 (2025-03-01)
 -------------------
 * Cleanup dependencies (add `angles`, rm `filters`) (`#1555 <https://github.com/ros-controls/ros2_controllers/issues/1555>`_)

@@ -54,6 +54,7 @@ class TestablePidController : public pid_controller::PidController
   FRIEND_TEST(PidControllerTest, activate_success);
   FRIEND_TEST(PidControllerTest, reactivate_success);
   FRIEND_TEST(PidControllerTest, test_feedforward_mode_service);
+  FRIEND_TEST(PidControllerTest, test_feedforward_mode_parameter);
   FRIEND_TEST(PidControllerTest, test_update_logic_feedforward_off);
   FRIEND_TEST(PidControllerTest, test_update_logic_feedforward_on_with_zero_feedforward_gain);
   FRIEND_TEST(PidControllerTest, test_update_logic_chainable_not_use_subscriber_update);
@@ -165,8 +166,9 @@ protected:
 
     for (size_t i = 0; i < dof_names_.size(); ++i)
     {
-      command_itfs_.emplace_back(hardware_interface::CommandInterface(
-        dof_names_[i], command_interface_, &dof_command_values_[i]));
+      command_itfs_.emplace_back(
+        hardware_interface::CommandInterface(
+          dof_names_[i], command_interface_, &dof_command_values_[i]));
       command_ifs.emplace_back(command_itfs_.back());
     }
 

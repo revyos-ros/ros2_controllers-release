@@ -2,6 +2,32 @@
 Changelog for package force_torque_sensor_broadcaster
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+4.26.0 (2025-06-06)
+-------------------
+* Use target_link_libraries instead of ament_target_dependencies (backport `#1697 <https://github.com/ros-controls/ros2_controllers/issues/1697>`_) (`#1699 <https://github.com/ros-controls/ros2_controllers/issues/1699>`_)
+* Contributors: mergify[bot]
+
+4.25.0 (2025-05-17)
+-------------------
+* Add multiplier support to ForceTorqueSensorBroadcaster (backport `#1647 <https://github.com/ros-controls/ros2_controllers/issues/1647>`_) (`#1686 <https://github.com/ros-controls/ros2_controllers/issues/1686>`_)
+* Contributors: mergify[bot], edward.ix
+
+4.24.0 (2025-04-27)
+-------------------
+* [CI]  test_force_torque_sensor_broadcaster regularily times out (`#1639 <https://github.com/ros-controls/ros2_controllers/issues/1639>`_)
+* Contributors: Julia Jia
+
+4.23.0 (2025-04-10)
+-------------------
+* [CI] Revert test changes to debug the timeout from test_force_torque_sensor_broadcaster  (`#1622 <https://github.com/ros-controls/ros2_controllers/issues/1622>`_)
+* Bump version of pre-commit hooks (`#1618 <https://github.com/ros-controls/ros2_controllers/issues/1618>`_)
+* Use global cmake macros and fix gcc-10 build (`#1527 <https://github.com/ros-controls/ros2_controllers/issues/1527>`_)
+* [CI] Time out from test_force_torque_sensor_broadcaster  (`#1586 <https://github.com/ros-controls/ros2_controllers/issues/1586>`_)
+* Contributors: Christoph Fröhlich, Julia Jia, github-actions[bot]
+
+4.22.0 (2025-03-17)
+-------------------
+
 4.21.0 (2025-03-01)
 -------------------
 * Fix the exported interface naming in the chainable controllers (`#1528 <https://github.com/ros-controls/ros2_controllers/issues/1528>`_)

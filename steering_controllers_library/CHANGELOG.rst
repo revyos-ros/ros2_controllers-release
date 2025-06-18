@@ -2,6 +2,33 @@
 Changelog for package steering_controllers_library
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+4.26.0 (2025-06-06)
+-------------------
+* Fix steering_controllers_library docs (`#1734 <https://github.com/ros-controls/ros2_controllers/issues/1734>`_)
+* Use target_link_libraries instead of ament_target_dependencies (backport `#1697 <https://github.com/ros-controls/ros2_controllers/issues/1697>`_) (`#1699 <https://github.com/ros-controls/ros2_controllers/issues/1699>`_)
+* Contributors: Christoph Fröhlich, mergify[bot]
+
+4.25.0 (2025-05-17)
+-------------------
+* Simplify `on_set_chained_mode` avoiding cpplint warnings (backport `#1564 <https://github.com/ros-controls/ros2_controllers/issues/1564>`_) (`#1688 <https://github.com/ros-controls/ros2_controllers/issues/1688>`_)
+* Contributors: mergify[bot], Bhagyesh Agresar
+
+4.24.0 (2025-04-27)
+-------------------
+* Rename ackermann msg to controller state msg type (`#1662 <https://github.com/ros-controls/ros2_controllers/issues/1662>`_)
+* Remove front_steering from steering library (`#1166 <https://github.com/ros-controls/ros2_controllers/issues/1166>`_)
+* Fix preceeding->preceding typos (`#1655 <https://github.com/ros-controls/ros2_controllers/issues/1655>`_)
+* Contributors: Christoph Fröhlich, Enrique Llorente Pastora, Mukunda Bharatheesha
+
+4.23.0 (2025-04-10)
+-------------------
+* Bump version of pre-commit hooks (`#1618 <https://github.com/ros-controls/ros2_controllers/issues/1618>`_)
+* Use global cmake macros and fix gcc-10 build (`#1527 <https://github.com/ros-controls/ros2_controllers/issues/1527>`_)
+* Contributors: Christoph Fröhlich, github-actions[bot]
+
+4.22.0 (2025-03-17)
+-------------------
+
 4.21.0 (2025-03-01)
 -------------------
 * Fix the exported interface naming in the chainable controllers (`#1528 <https://github.com/ros-controls/ros2_controllers/issues/1528>`_)
